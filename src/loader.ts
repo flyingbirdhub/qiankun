@@ -341,6 +341,7 @@ export async function loadApp<T extends ObjectType>(
   await execHooksChain(toArray(beforeLoad), app, global);
 
   // get the lifecycle hooks from module exports
+  // 最终把sandbox应用到scripts部分，基本上所有的沙箱都是这个样子了吧
   const scriptExports: any = await execScripts(global, sandbox && !useLooseSandbox, {
     scopedGlobalVariables: speedySandbox ? lexicalGlobals : [],
   });
